@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class PropertyController extends AbstractController
 {
 
+
     /**
      * @var PropertyRepository
      */
