@@ -7,6 +7,7 @@ use App\Form\PropertyType;
 use App\Repository\PropertyRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,7 +42,7 @@ class AdminPropertyController extends AbstractController
     /**
      * @Route("/admin/property/create", name="admin.property.new")
      */
-    public function new(Request $request)
+    public function new(Request $request): Response
     {
         $property = new Property();
         $form = $this->createForm(PropertyType::class, $property);
@@ -65,13 +66,13 @@ class AdminPropertyController extends AbstractController
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function edit(Property $property, Request $request)
+    public function edit(Property $property, Request $request): Response
     {
         $form = $this->createForm(PropertyType::class, $property);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->em->flush();
+            $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', 'Bien modifié avec succés');
             return $this->redirectToRoute('admin.property.index');
         }
