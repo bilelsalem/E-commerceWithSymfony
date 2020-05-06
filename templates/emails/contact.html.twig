@@ -1,0 +1,41 @@
+ {% block title contact.property.title %} {% block body %}
+
+<div class="container mt-4">
+
+    <p>
+       Demande de contact {{contact.property.title}}
+    </p>
+       <p>
+       Une nouvelle personne souhaite obtenir plus d'information à propos du bien <a href="
+       {{url('property.show', {id : contact.property.id , slug : contact.property.slug}) }}">{{contact.property.title}}</a>
+    </p>
+    <div>
+        <div class="col-md-8">
+            
+            <table class="table table-striped">
+                <tr>
+                    <td>Prénom: </td>
+                    <td>{{ contact.firstname }} </td>
+                </tr>
+                <tr>
+                    <td>Nom: </td>
+                    <td>{{contact.lastname}} </td>
+                </tr>
+                <tr>
+                    <td>Phone: </td>
+                    <td>{{ contact.phone}} </td>
+                </tr>
+                <tr>
+                    <td>Email: </td>
+                    <td>{{ contact.email}} </td>
+                </tr>
+                <tr>
+                    <td>Message: </td>
+                    <td>{{ contact.message | nl2br}} </td>
+                </tr>
+            </table>
+        </div>
+       
+    </div>
+</div>
+{% endblock %}
