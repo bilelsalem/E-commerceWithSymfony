@@ -25,7 +25,7 @@ class ContactNotification
     public function notify(Contact $contact)
     {
         $message = (new \Swift_Message('Agence : ', $contact->getProperty()->getTitle()))
-            ->setFrom('noreply@agence.fr')
+            ->setFrom('bilel.salem.org@gmail.com')
             ->setTo('contact@agence.fr')
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render('emails/contact.html.twig', [
